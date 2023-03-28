@@ -6,7 +6,12 @@ use Modules\User\Models\UserModel;
 
 class AuthUtil
 {
-    public static $user;
+    private static $user;
+
+    public static function getUser()
+    {
+        return self::$user;
+    }
 
     public static function setUser($username)
     {
