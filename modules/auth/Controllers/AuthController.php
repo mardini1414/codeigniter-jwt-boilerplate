@@ -23,8 +23,9 @@ class AuthController extends BaseController
         $password = $this->request->getVar('password');
         try {
             $jwt = $this->authService->getJWT($username, $password);
-            return $this->respondCreated(['access_token' => $jwt]);
-        } catch (\Throwable $th) {
+            $data = ['access_token' => $jwt, 'type' => 'Bearer'];
+            return $this->respondCreated($data);
+        } catch (\InvalidArgumentException $e) {
             return $this->respond(['message' => 'login failed'], 401);
         }
     }

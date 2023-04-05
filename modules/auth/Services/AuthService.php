@@ -19,7 +19,7 @@ class AuthService
     {
         $validatedUser = $this->validateUser($username, $password);
         if (!$validatedUser) {
-            throw new Exception('user is not valid');
+            throw new \InvalidArgumentException('user is not valid');
         }
         $jwt = JWTUtil::generate($username);
         return $jwt;

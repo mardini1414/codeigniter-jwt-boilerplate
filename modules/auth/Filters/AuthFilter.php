@@ -23,9 +23,8 @@ class AuthFilter implements FilterInterface
         }
         try {
             $decoded = JWTUtil::decode($jwt);
-            AuthUtil::setUser($decoded->username);
-        } catch (\Throwable $th) {
-            print_r($th);
+            AuthUtil::setUserByUsername($decoded->username);
+        } catch (\UnexpectedValueException $e) {
             $response->setStatusCode(401);
             $response->setJSON(['message' => 'unauthorized']);
             return $response;

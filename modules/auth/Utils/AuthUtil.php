@@ -13,7 +13,7 @@ class AuthUtil
         return self::$user;
     }
 
-    public static function setUser($username)
+    public static function setUserByUsername($username)
     {
         $userModel = new UserModel();
         $user = $userModel->where('username', $username)->first();
